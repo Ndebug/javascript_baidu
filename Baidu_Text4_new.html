@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度前端试题4</title>
+</head>
+<body>
+<input type="text" id="input">
+<button id="left_in">左侧入</button>
+<button id="right_in">右侧入</button>
+<button id="left_out">左侧出</button>
+<button id="right_out">右侧出</button>
+ <div id="create"></div>
+<script>
+    var  input = document.getElementById("input");
+        var left_in = document.getElementById("left_in");
+        var left_out =document.getElementById("left_out");
+        var right_in =document.getElementById("right_in");
+        var right_out = document.getElementById("right_out");
+         var content = document.getElementById("create");
+         function CreateDiv() {
+                if (!Number(input.value)&& input.value!=0 || input.value =="" )
+                {
+                      alert("请输入数字");
+                      return false
+
+                }
+
+                 new_div= document.createElement("div");
+                  var text = document.createTextNode(input.value);
+             new_div.appendChild(text);
+
+             new_div.onclick=function () {
+                       content.removeChild(this);
+                   }
+             new_div.style.border = "1px solid red";
+             new_div.style.backgroundColor = "red";
+             new_div.style.color = "white";
+             new_div.style.height = "30px";
+             new_div.style.float = "left";
+             new_div.style.margin = "10px";
+             new_div.style.padding = "10px";
+             new_div.style.lineHeight = "30px";
+
+         }
+            function left_In() {
+
+                CreateDiv();
+                content.insertBefore(new_div,content.firstChild);
+                input.value="";
+            }
+              function right_In() {
+                  CreateDiv();
+                  content.appendChild(new_div);
+                  input.value="";
+                    }
+                    function left_Out() {
+                        if(content.childNodes.length ==0)
+                        {
+                            alert("已经没有可以移除的对象")
+                        }
+                       content.removeChild(content.firstChild);
+                         alert(content.firstChild.textContent);
+
+                    }
+                    function right_Out() {
+                        if(content.childNodes.length ==0)
+                        {
+                            alert("已经没有可以移除的对象")
+                        }
+                        content.removeChild(content.lastChild);
+                        alert(content.firstChild.textContent)
+                    }
+                    left_in.onclick=left_In;
+                    left_out.onclick = left_Out;
+                    right_in.onclick= right_In;
+                    right_out.onclick=right_Out;
+</script>
+</body>
+
+</html>
